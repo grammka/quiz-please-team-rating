@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Please team rating</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font: 13px/16px Tahoma, sans-serif;
+    }
+
+    .wrapper {
+      width: 1200px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    #input {
+      width: 500px;
+      display: block;
+      line-height: 18px;
+      border: 2px solid #ddd;
+      margin: 0 auto 30px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+
+    table {
+      border: 2px solid #ddd;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    td:first-child {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <a href="http://www.convertcsv.com/csv-to-json.htm" target="_blank">CSV to JSON</a>
+
+    <form id="form">
+      <input id="input">
+    </form>
+    <div>
+      <table id="result"></table>
+    </div>
+  </div>
+
+  <script>
+    var form    = document.getElementById('form');
+    var input   = document.getElementById('input');
+    var result  = document.getElementById('result');
+
+
+    form.onsubmit = function(event) {
+      event.preventDefault();
+
+      var json = JSON.parse(input.value);
+
+      var maxValues = [];
+
+      for (var i = 1; i < json[0].length; i++) {
+        var values = [];
+
+        for (var j = 1; j < json.length; j++) {
+          var cellValue = json[j][i] || 0;
+
+          if (cellValue && typeof cellValue == 'string') {
+            cellValue = Number(cellValue.replace(',', '.'))
+          }
+
+          json[j][i] = cellValue;
+
+          values.push(Number(cellValue));
+        }
+
+        maxValues.push(Math.max.apply(Math, values));
+      }
+
+      var percentSum = [];
+      var percentAvg = {};
+
+      for (var i = 1; i < json.length; i++) {
+        var line = json[i];
+        var percentValues = [];
+        var roundCnt = 0;
+
+        for (var j = 1; j < line.length; j++) {
+          if (line[j]) {
+            roundCnt++;
+            percentValues.push(line[j] / maxValues[j - 1] * 100);
+          }
+        }
+
+        var percent_sum = percentValues.reduce(function (sum, curr) {
+          return sum + curr
+        }, 0);
+
+        percentSum.push(percent_sum);
+
+        if (roundCnt > 3) {
+          percentAvg[(percent_sum / roundCnt).toFixed(2)] = json[i][0];
+        }
+      }
+
+      var html = '';
+
+      for (var i = 0; i < json.length; i++) {
+        var tr = '<tr>';
+        var line = json[i];
+
+        for (var j = 0; j < line.length; j++) {
+          tr += '<td>' + line[j] + '</td>';
+        }
+
+        tr += '</tr>';
+
+        html += tr;
+      }
+
+      result.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
