@@ -1,1 +1,4 @@
 .idea
+*.log
+
+client/data.js

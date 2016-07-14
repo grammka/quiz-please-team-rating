@@ -90,23 +90,24 @@ body {
   padding: 0 0 0 20px;
 }
 
-.faq:hover {
+body.not-mobile .faq:hover {
   background-color: #333;
 }
 
-.faq:hover .hint {
+body.not-mobile .faq:hover .hint {
   display: block;
 }
 
 .sidebar {
   width: 260px;
-  height: 100%;
   background-color: #fff;
   border-right: 2px solid #ddd;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
   position: fixed;
   left: 0;
   top: 30px;
+  bottom: 0;
   z-index: 30;
 }
 
@@ -121,6 +122,11 @@ body {
   text-overflow: ellipsis;
   font-weight: bold;
   font-size: 13px;
+}
+
+body.not-mobile .sidebarRow:hover,
+.sidebarRow.hovered {
+  background-color: #fff8d9;
 }
 
 .sidebarRowIndex {
@@ -144,6 +150,7 @@ body {
   right: 0;
   bottom: 0;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .content {
@@ -175,7 +182,8 @@ body {
   *display: inline;
 }
 
-.contentRow:hover {
+body.not-mobile .contentRow:hover,
+.contentRow.hovered {
   background-color: #fff8d9;
 }
 

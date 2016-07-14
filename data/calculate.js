@@ -257,25 +257,25 @@ teams = teams.sort(function(a, b) {
 	return b.roundCnt - a.roundCnt;
 });
 
-var moreThanThreeRounds = teams.filter(function(team) {
+var firstGroup = teams.filter(function(team) {
 	return team.roundCnt >= roundCntForRating;
 });
 
-var lessThatFourRounds = teams.slice(moreThanThreeRounds.length);
+var secondGroup = teams.slice(firstGroup.length);
 
 
 // Calculate percent
 
-for (var y = 0; y < moreThanThreeRounds.length; y++) {
-  var team = moreThanThreeRounds[y];
+for (var y = 0; y < firstGroup.length; y++) {
+  var team = firstGroup[y];
 
   team.percent = Number((team.rounds.reduce(function(sum, roundValue, index) {
     return sum + roundValue / roundsMaxStat[index] * 100
   }, 0) / team.roundCnt).toFixed(2));
 }
 
-for (var y = 0; y < lessThatFourRounds.length; y++) {
-  var team = lessThatFourRounds[y];
+for (var y = 0; y < secondGroup.length; y++) {
+  var team = secondGroup[y];
 
   team.percent = Number((team.rounds.reduce(function(sum, roundValue, index) {
     return sum + roundValue / roundsMaxStat[index] * 100
@@ -283,10 +283,18 @@ for (var y = 0; y < lessThatFourRounds.length; y++) {
 }
 
 
-moreThanThreeRounds = moreThanThreeRounds.sort(function(a, b) {
+firstGroup = firstGroup.sort(function(a, b) {
 	return b.percent - a.percent;
 });
 
-lessThatFourRounds = lessThatFourRounds.sort(function(a, b) {
+secondGroup = secondGroup.sort(function(a, b) {
   return b.percent - a.percent;
 });
+
+
+
+module.exports = {
+  roundCnt: roundCnt,
+  firstGroup: firstGroup,
+  secondGroup: secondGroup
+};

@@ -1,7 +1,7 @@
 // Render header
 
 var headerHtml = '';
-for (var i = 0; i < roundCnt; i++) {
+for (var i = 0; i < data.roundCnt; i++) {
   headerHtml += '<div class="cell">Раунд ' + (i + 1) + '</div>';
 }
 headerHtml += '<div class="cell cellResult cellRank">Ранг</div>';
@@ -15,16 +15,20 @@ header.innerHTML = headerHtml;
 // Render sidebar
 
 var sidebarHtml = '';
+var sidebarIndex = 0;
 
-for (var i = 0; i < moreThanThreeRounds.length; i++) {
-  sidebarHtml += '<div class="sidebarRow"><div class="sidebarRowIndex">' + ( i + 1 ) + '</div>' + moreThanThreeRounds[i].name + '</div>';
+function generateSidebar(group) {
+  for (var i = 0; i < group.length; i++, sidebarIndex++) {
+    sidebarHtml += '<div index="' + sidebarIndex + '" class="sidebarRow"><div class="sidebarRowIndex">' + ( sidebarIndex + 1 ) + '</div>' + group[i].name + '</div>';
+  }
 }
 
+generateSidebar(data.firstGroup);
+
+sidebarIndex++;
 sidebarHtml += '<div class="hr"></div>';
 
-for (var k = 0; k < lessThatFourRounds.length; k++, i++) {
-  sidebarHtml += '<div class="sidebarRow"><div class="sidebarRowIndex">' + ( i + 1 ) + '</div>' + lessThatFourRounds[k].name + '</div>';
-}
+generateSidebar(data.secondGroup);
 
 sidebar.innerHTML = sidebarHtml;
 
@@ -32,12 +36,13 @@ sidebar.innerHTML = sidebarHtml;
 // Render content
 
 var contentHtml = '';
+var contentIndex = 0;
 
 function generateContent(teams) {
-  for (var y = 0; y < teams.length; y++) {
-    contentHtml += '<div class="contentRow">';
+  for (var y = 0; y < teams.length; y++, contentIndex++) {
+    contentHtml += '<div index="' + contentIndex + '" class="contentRow">';
 
-    for (var x = 0; x < roundCnt; x++) {
+    for (var x = 0; x < data.roundCnt; x++) {
       var value = teams[y].rounds[x] || '';
 
       contentHtml += '<div class="cell">' + value + '</div>';
@@ -53,10 +58,11 @@ function generateContent(teams) {
   }
 }
 
-generateContent(moreThanThreeRounds);
+generateContent(data.firstGroup);
 
+contentIndex++;
 contentHtml += '<div class="hr"></div>';
 
-generateContent(lessThatFourRounds);
+generateContent(data.secondGroup);
 
 content.innerHTML = contentHtml;
