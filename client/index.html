@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Please team rating</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="header">
+      <div id="header" class="headerContent"></div>
+    </div>
+    <div class="sidebarHeader">
+      <div class="sidebarRowIndex">
+        <div class="faq">
+          ?
+          <div class="hint">
+            <ul>
+              <li>Положение команд в рейтинговой таблице определяется средним значением процента попаданий в первое место за каждый раунд</li>
+              <li>Положение команд с кол-вом сыгранных раундов меньше 5 считается отдельно и отделяется горизонтальной чертой</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      Название команды
+    </div>
+    <div class="sidebar">
+      <div id="sidebar" class="sidebarContent"></div>
+    </div>
+    <div id="container" class="container">
+      <div id="content" class="content"></div>
+    </div>
+  </div>
+
+  <script src="calculate.js"></script>
+  <script src="app.js"></script>
+  <script src="generateContent.js"></script>
+
+</body>
+</html>
