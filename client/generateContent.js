@@ -15,17 +15,18 @@ header.innerHTML = headerHtml;
 // Render sidebar
 
 var sidebarHtml = '';
-var sidebarIndex = 0;
+var sidebarIterationIndex = 0;
+var sidebarItemIndex = 0;
 
 function generateSidebar(group) {
-  for (var i = 0; i < group.length; i++, sidebarIndex++) {
-    sidebarHtml += '<div index="' + sidebarIndex + '" class="sidebarRow"><div class="sidebarRowIndex">' + ( sidebarIndex + 1 ) + '</div>' + group[i].name + '</div>';
+  for (var i = 0; i < group.length; i++, sidebarIterationIndex++, sidebarItemIndex++) {
+    sidebarHtml += '<div index="' + sidebarItemIndex + '" class="sidebarRow"><div class="sidebarRowIndex">' + ( sidebarIterationIndex + 1 ) + '</div>' + group[i].name + '</div>';
   }
 }
 
 generateSidebar(data.firstGroup);
 
-sidebarIndex++;
+sidebarItemIndex++;
 sidebarHtml += '<div class="hr"></div>';
 
 generateSidebar(data.secondGroup);
