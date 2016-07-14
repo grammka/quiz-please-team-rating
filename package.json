@@ -16,6 +16,8 @@
   ],
   "scripts": {
     "data": "node ./data/generate.js",
-    "transform": "node ./data/transform_games_data.js"
+    "gen_prev": "node ./data/generate/previous_games_data.js",
+    "transform": "node ./data/transform/games_data.js",
+    "gen_full": "node ./data/generate/full_data.js"
   }
 }

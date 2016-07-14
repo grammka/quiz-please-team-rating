@@ -188,18 +188,18 @@ var xShift = 3;
 for (var x = xUnShift; x < data[0].length - xShift; x++) {
   var gameNum = x - 1;
   var result = [];
-  
+
   for (var y = 0; y < data.length; y++) {
     if (data[y][x]) {
       result.push([ data[y][0], data[y][1], data[y][x] ]);
     }
   }
-  
+
   var code = JSON.stringify(result).replace(/^\[/, '[\n\t').replace(/\]\,/g, '],\n\t').replace(/\]$/, '\n]');
   code = 'module.exports = ' + code + ';\n';
-  
+
   (function(gameNum) {
-    fs.writeFile(path.resolve(__dirname, 'games_data/game_' + gameNum + '.js'), code, function(err) {
+    fs.writeFile(path.resolve(__dirname, '../storage/games/game_' + gameNum + '.js'), code, function(err) {
       if (err) {
         return console.log(err);
       }
