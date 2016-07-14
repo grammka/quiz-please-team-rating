@@ -1,5 +1,5 @@
 {
-  "name": "quiz-please-team-rating",
+  "name": "quizpleaseratethis",
   "version": "1.0.0",
   "description": "Team average % points calculator",
   "homepage": "https://github.com/grammka/quiz-please-team-rating#readme",
@@ -15,9 +15,38 @@
     "teams"
   ],
   "scripts": {
-    "data": "node ./data/generate.js",
-    "gen_prev": "node ./data/generate/previous_games_data.js",
-    "transform": "node ./data/transform/games_data.js",
-    "gen_full": "node ./data/generate/full_data.js"
+    "start": "node ./server",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "app-module-path": "^1.1.0",
+    "babel-core": "^6.0.20",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.0.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-0": "^6.0.15",
+    "css-loader": "^0.23.1",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.6.2",
+    "file-loader": "^0.9.0",
+    "nib": "^1.1.0",
+    "normalize.css": "^4.2.0",
+    "react-css-modules": "^3.7.7",
+    "react-hot-loader": "^1.3.0",
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.1.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-router": "^2.5.2",
+    "redux": "^3.5.2"
   }
 }

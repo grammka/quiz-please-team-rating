@@ -1,0 +1,21 @@
+sqrt(x)
+  return math(x, 'sqrt')
+
+display-inline-block()
+  display: -moz-inline-stack
+  display: inline-block
+  vertical-align: top
+  zoom: 1
+  //*display: inline
+
+no-select()
+  user-select: none
+
+input-placeholder()
+  &.placeholder
+  &:placeholder
+  &:-moz-placeholder
+  &::-moz-placeholder
+  &:-ms-input-placeholder
+  &::-webkit-input-placeholder
+    {block}

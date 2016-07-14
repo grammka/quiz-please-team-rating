@@ -1,0 +1,23 @@
+{
+  "name": "quizpleaseratethis-data",
+  "version": "1.0.0",
+  "description": "Team average % points calculator",
+  "homepage": "https://github.com/grammka/quiz-please-team-rating#readme",
+  "author": "Pavel Ivanov (grammka@gmail.com)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grammka/quiz-please-team-rating.git"
+  },
+  "keywords": [
+    "quizplease",
+    "rating",
+    "teams"
+  ],
+  "scripts": {
+    "data": "node ./data/generate.js",
+    "gen_prev": "node ./data/generate/previous_games_data.js",
+    "transform": "node ./data/transform/games_data.js",
+    "gen_full": "node ./data/generate/full_data.js"
+  }
+}
