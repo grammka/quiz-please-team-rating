@@ -16,6 +16,6 @@
   ],
   "scripts": {
     "data": "node ./data/generate.js",
-    "surge": "surge ./client quizplease.surge.sh"
+    "transform": "node ./data/transform_games_data.js"
   }
 }

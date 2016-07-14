@@ -190,7 +190,7 @@ body.not-mobile .contentRow:hover,
 
 
 .cell {
-  min-width: 70px;
+  min-width: 65px;
   height: 30px;
   line-height: 30px;
   border-right: 1px solid #ddd;
@@ -218,7 +218,7 @@ body.not-mobile .contentRow:hover,
 }
 
 .cellRoundCnt {
-  width: 100px;
+  width: 70px;
 }
 
 .cellSumm {

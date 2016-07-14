@@ -7,7 +7,7 @@ var code = 'var data = ' + JSON.stringify(calculation);
 
 fs.writeFile(path.resolve(__dirname, '../client/data.js'), code, function(err) {
 	if (err) {
-    console.log(err);
+    return console.log(err);
   }
 
   console.log('Data generated successfully!\n');

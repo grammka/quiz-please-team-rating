@@ -2,10 +2,10 @@
 
 var headerHtml = '';
 for (var i = 0; i < data.roundCnt; i++) {
-  headerHtml += '<div class="cell">Раунд ' + (i + 1) + '</div>';
+  headerHtml += '<div class="cell">Игра ' + (i + 1) + '</div>';
 }
 headerHtml += '<div class="cell cellResult cellRank">Ранг</div>';
-headerHtml += '<div class="cell cellResult cellRoundCnt">Кол. раундов</div>';
+headerHtml += '<div class="cell cellResult cellRoundCnt">Кол. игр</div>';
 headerHtml += '<div class="cell cellResult cellSumm">Сумма</div>';
 headerHtml += '<div class="cell cellResult cellAvg">Среднее</div>';
 headerHtml += '<div class="cell cellResult cellPercent">%</div>';
