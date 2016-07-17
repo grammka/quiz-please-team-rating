@@ -1,15 +1,51 @@
 import React from 'react'
+//import VanillaKinetic from 'vanilla.kinetic/vanilla.kinetic'
+import isMobile from 'isMobile'
+import addEventListeners from './addEventListeners'
 import CSSModules from 'react-css-modules'
 import style from './style'
 
 import data from '../../../static/data'
 
 
-console.log(333, data)
-
 @CSSModules(style, { allowMultiple: true })
 export default class RatingTable extends React.Component {
-  renderSidebarRow = (teamData, index) => {
+  constructor() {
+    super()
+
+    this.state = {
+      hoveredIndex: undefined
+    }
+  }
+
+  componentDidMount() {
+    const header      = this.refs.header
+    const sidebar     = this.refs.sidebar
+    const container   = this.refs.container
+    const content     = this.refs.content
+
+    // new VanillaKinetic(container, {
+    //   filterTarget: (target, e) => {
+    //     console.log(target, e)
+    //
+    //     if (!/down|start/.test(e.type)) {
+    //       return !(/area|a|input/i.test(target.tagName))
+    //     }
+    //   }
+    // })
+
+    if (!isMobile) {
+      addEventListeners({ header, sidebar, container, content })
+    }
+  }
+
+  highlightRow = (index) => {
+    this.setState({
+      hoveredIndex: index
+    })
+  }
+
+  renderSidebarRow(teamData, index) {
     return (
       <div key={ index } styleName="sidebarRow">
         <div styleName="sidebarRowIndex">{ index + 1 }</div>
@@ -18,7 +54,7 @@ export default class RatingTable extends React.Component {
     )
   }
 
-  renderContentCell = (value, index) => {
+  renderContentCell(value, index) {
     if (value == '-') {
       value = ''
     }
@@ -28,7 +64,7 @@ export default class RatingTable extends React.Component {
     )
   }
 
-  renderContentRow = (teamData, index) => {
+  renderContentRow(teamData, index) {
     let rank
 
     if (teamData.sumPoints > 1000) {
@@ -44,7 +80,7 @@ export default class RatingTable extends React.Component {
     }
     
     return (
-      <div key={ index } styleName="contentRow">
+      <div key={ index } styleName="contentRow" onMouseOver={ () => this.highlightRow(index) }>
         {
           teamData.games.map(this.renderContentCell)
         }
@@ -58,11 +94,29 @@ export default class RatingTable extends React.Component {
   }
 
   render() {
+    const { hoveredIndex } = this.state
+
+    
     return (
       <div styleName="wrapper">
+
         <div styleName="header">
-          <div styleName="headerContent"></div>
+          <div ref="header" styleName="headerContent">
+            {
+              Array.apply(null, {length: data.gamesCnt}).map(Number.call, Number).map((item, index) => {
+                return (
+                  <div key={ index } styleName="cell">{ `Игра ${ index + 1 }` }</div>
+                )
+              })
+            }
+            <div styleName="cell cellResult cellRank">Ранг</div>,
+            <div styleName="cell cellResult cellRoundCnt">Кол. игр</div>,
+            <div styleName="cell cellResult cellSumm">Сумма</div>,
+            <div styleName="cell cellResult cellAvg">Среднее</div>,
+            <div styleName="cell cellResult cellPercent">%</div>
+          </div>
         </div>
+
         <div styleName="sidebarHeader">
           <div styleName="sidebarRowIndex">
             <div styleName="faq">
@@ -78,8 +132,9 @@ export default class RatingTable extends React.Component {
           </div>
           Название команды
         </div>
+
         <div styleName="sidebar">
-          <div>
+          <div ref="sidebar">
             {
               data.firstGroup.map(this.renderSidebarRow)
             }
@@ -89,8 +144,9 @@ export default class RatingTable extends React.Component {
             }
           </div>
         </div>
-        <div styleName="container">
-          <div styleName="content">
+
+        <div ref="container" styleName="container">
+          <div ref="content" styleName="content">
             {
               data.firstGroup.map(this.renderContentRow)
             }
@@ -100,6 +156,7 @@ export default class RatingTable extends React.Component {
             }
           </div>
         </div>
+
       </div>
     )
   }

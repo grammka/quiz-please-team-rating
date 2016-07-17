@@ -1,229 +1,180 @@
-.wrapper {
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  cursor: default;
-}
+$sidebar-width = 260px
 
 
 
-.header {
-  width: 100%;
-  height: 30px;
-  border-bottom: 2px solid #ddd;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 260px;
-  z-index: 20;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.headerContent {
-  white-space: nowrap;
-  font-size: 0;
-}
+.wrapper
+  background-color: #fff
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  cursor: default
 
 
+.header
+  width: 100%
+  height: 30px
+  border-bottom: 2px solid #ddd
+  overflow: hidden
+  position: fixed
+  top: 0
+  left: 260px
+  z-index: 20
+  no-select()
 
-.sidebarHeader {
-  width: 260px;
-  height: 30px;
-  line-height: 30px;
-  background-color: #fff;
-  border-bottom: 2px solid #ddd;
-  border-right: 2px solid #ddd;
-  position: fixed;
-  z-index: 40;
-  text-align: center;
-  font-size: 13px;
-}
+.headerContent
+  white-space: nowrap
+  font-size: 0
 
-.faq {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  background-color: #333;
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: center;
-  font-weight: bold;
-  font-size: 14px;
-  color: #f3e4a8;
-}
 
-.hint {
-  display: none;
-  line-height: 22px;
-  padding: 15px;
-  background-color: rgba(0,0,0, 0.9);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  color: #f3e4a8;
-  text-align: left;
-  font-size: 13px;
-  font-weight: normal;
-  white-space: nowrap;
-  letter-spacing: 0.1px;
-  border-radius: 0 0 3px 0;
-  -webkit-border-radius: 0 0 3px 0;
-}
 
-.hint ul {
-  margin: 0;
-  padding: 0 0 0 20px;
-}
+// Sidebar ========================================== /
 
-.hint a {
-  color: #fff;
-}
+.sidebarHeader
+  width: $sidebar-width
+  height: 30px
+  line-height: 30px
+  background-color: #fff
+  border-bottom: 2px solid #ddd
+  border-right: 2px solid #ddd
+  position: fixed
+  z-index: 40
+  text-align: center
+  font-size: 13px
 
-body.not-mobile .faq:hover {
-  background-color: #333;
-}
+.faq
+  width: 30px
+  height: 30px
+  line-height: 30px
+  background-color: #333
+  position: absolute
+  top: 0
+  left: 0
+  text-align: center
+  font-weight: bold
+  font-size: 14px
+  color: #f3e4a8
+  body.not-mobile &:hover .hint
+    display: block
 
-body.not-mobile .faq:hover .hint {
-  display: block;
-}
+.hint
+  display: none
+  line-height: 22px
+  padding: 15px
+  background-color: rgba(0,0,0, 0.9)
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 10
+  color: #f3e4a8
+  text-align: left
+  font-size: 13px
+  font-weight: normal
+  white-space: nowrap
+  letter-spacing: 0.1px
+  border-radius: 0 0 3px 0
+  ul
+    margin: 0
+    padding: 0 0 0 20px
+  a
+    color: #fff
 
-.sidebar {
-  width: 260px;
-  background-color: #fff;
-  border-right: 2px solid #ddd;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  position: fixed;
-  left: 0;
-  top: 30px;
-  bottom: 0;
-  z-index: 30;
-}
+//body.not-mobile .faq:hover .hint
+//  display: block
 
-.sidebarRow {
-  height: 30px;
-  line-height: 30px;
-  border-bottom: 1px solid #ddd;
-  padding: 0 15px 0 45px;
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-weight: bold;
-  font-size: 13px;
-}
+
+.sidebar
+  width: $sidebar-width
+  background-color: #fff
+  border-right: 2px solid #ddd
+  overflow-y: hidden
+  overflow-x: scroll
+  fixed top 30px left 0 bottom 0
+  z-index: 10
+
+.sidebarRow
+  height: 30px
+  line-height: 30px
+  border-bottom: 1px solid #ddd
+  padding: 0 15px 0 45px
+  position: relative
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  font-weight: bold
+  font-size: 13px
 
 body.not-mobile .sidebarRow:hover,
-.sidebarRow.hovered {
-  background-color: #fff8d9;
-}
+.sidebarRow.hovered
+  background-color: #fff8d9
 
-.sidebarRowIndex {
-  width: 30px;
-  height: 100%;
-  border-right: 1px solid #ddd;
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: center;
-  font-weight: normal;
-  font-size: 11px;
-}
+.sidebarRowIndex
+  width: 30px
+  height: 100%
+  border-right: 1px solid #ddd
+  position: absolute
+  top: 0
+  left: 0
+  text-align: center
+  font-weight: normal
+  font-size: 11px
 
 
 
-.container {
-  position: fixed;
-  top: 30px;
-  left: 260px;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
+// Container ========================================== /
 
-.content {
-  user-select: none;
-  -webkit-user-select: none;
+.container
+  fixed top 30px left $sidebar-width right 0 bottom 0
+  overflow scroll
+  -webkit-overflow-scrolling: touch
 
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-  *display: inline;
-}
+.content
+  no-select()
+  display-inline-block()
 
-.hr {
-  width: 100%;
-  height: 3px;
-  background-color: #ddd;
-}
+.hr
+  width: 100%
+  height: 3px
+  background-color: #ddd
 
-.contentRow {
-  height: 30px;
-  border-bottom: 1px solid #ddd;
-  white-space: nowrap;
-
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-*display: inline;
-}
+.contentRow
+  height: 30px
+  border-bottom: 1px solid #ddd
+  white-space: nowrap
+  display-inline-block()
 
 body.not-mobile .contentRow:hover,
-.contentRow.hovered {
-  background-color: #fff8d9;
-}
+.contentRow.hovered
+  background-color: #fff8d9
 
 
-
-.cell {
-  min-width: 65px;
-  height: 30px;
-  line-height: 30px;
-  border-right: 1px solid #ddd;
-  text-align: center;
-  font-size: 13px;
-
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-*display: inline;
-}
+.cell
+  min-width: 65px
+  height: 30px
+  line-height: 30px
+  border-right: 1px solid #ddd
+  text-align: center
+  font-size: 13px
+  display-inline-block()
 
 
-
-.cellResult {
-  min-width: 0;
-}
+.cellResult
+  min-width: 0
 
 
+.cellRank
+  width: 100px
+  border-left: 2px solid #ddd
 
-.cellRank {
-  width: 100px;
-  border-left: 2px solid #ddd;
-}
+.cellRoundCnt
+  width: 70px
 
-.cellRoundCnt {
-  width: 70px;
-}
+.cellSumm
+  width: 60px
 
-.cellSumm {
-  width: 60px;
-}
+.cellAvg
+  width: 72px
 
-.cellAvg {
-  width: 72px;
-}
-
-.cellPercent {
-  width: 55px;
-}
+.cellPercent
+  width: 55px

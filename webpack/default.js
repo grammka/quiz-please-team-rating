@@ -9,6 +9,7 @@ var paths = {
 
 module.exports = {
   devtool: 'eval',
+  //devtool: 'cheap-module-source-map',
 
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
@@ -28,6 +29,11 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: [ 'react-hot', 'babel' ],
         exclude: /node_modules/
+      },
+      {
+        test: /vanilla\.kinetic\.js$/,
+        loader: 'imports?window=>{}!exports?window.VanillaKinetic',
+        include: /vanilla\.kinetic/
       },
       {
         test: /\.styl$/,
@@ -51,7 +57,7 @@ module.exports = {
   },
 
   resolve: {
-    modulesDirectories: [ 'client', 'shared', 'node_modules' ],
+    modulesDirectories: [ 'local_modules', 'client', 'shared', 'node_modules' ],
     extensions: [ '', '.js', '.jsx', '.css', '.styl' ]
   },
 
