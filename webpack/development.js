@@ -1,5 +1,5 @@
 export default (webpackConfig) => {
-  webpackConfig.entry.app.push(
+  webpackConfig.entry.push(
     'webpack-hot-middleware/client?path=/__webpack_hmr'
   )
 
