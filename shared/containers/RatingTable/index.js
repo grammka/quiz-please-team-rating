@@ -2,6 +2,8 @@ import React from 'react'
 //import VanillaKinetic from 'vanilla.kinetic/vanilla.kinetic'
 import isMobile from 'isMobile'
 import addEventListeners from './addEventListeners'
+import { Link } from 'react-router'
+import cx from 'classnames'
 import CSSModules from 'react-css-modules'
 import style from './style'
 
@@ -39,73 +41,17 @@ export default class RatingTable extends React.Component {
     }
   }
 
-  highlightRow = (index) => {
-    this.setState({
-      hoveredIndex: index
-    })
-  }
-
-  renderSidebarRow(teamData, index) {
-    return (
-      <div key={ index } styleName="sidebarRow">
-        <div styleName="sidebarRowIndex">{ index + 1 }</div>
-        { teamData.name }
-      </div>
-    )
-  }
-
-  renderContentCell(value, index) {
-    if (value == '-') {
-      value = ''
-    }
-
-    return (
-      <div key={ index } styleName="cell">{ value }</div>
-    )
-  }
-
-  renderContentRow(teamData, index) {
-    let rank
-
-    if (teamData.sumPoints > 1000) {
-      rank = ''
-    } else if (teamData.sumPoints > 500) {
-      rank = 'генералы'
-    } else if (teamData.sumPoints > 250) {
-      rank = 'лейтенанты'
-    } else if (teamData.sumPoints > 100) {
-      rank = 'сержанты'
-    } else {
-      rank = ''
-    }
-    
-    return (
-      <div key={ index } styleName="contentRow" onMouseOver={ () => this.highlightRow(index) }>
-        {
-          teamData.games.map(this.renderContentCell)
-        }
-        <div styleName="cell cellResult cellRank">{ rank }</div>
-        <div styleName="cell cellResult cellRoundCnt">{ teamData.playedGamesCnt }</div>
-        <div styleName="cell cellResult cellSumm">{ teamData.sumPoints }</div>
-        <div styleName="cell cellResult cellAvg">{ teamData.avgPoints }</div>
-        <div styleName="cell cellResult cellPercent">{ teamData.winPercent }</div>
-      </div>
-    )
-  }
-
   render() {
-    const { hoveredIndex } = this.state
-
-    
     return (
       <div styleName="wrapper">
 
         <div styleName="header">
           <div ref="header" styleName="headerContent">
             {
-              Array.apply(null, {length: data.gamesCnt}).map(Number.call, Number).map((item, index) => {
+              Array.apply(null, { length: data.gamesCnt }).map(Number.call, Number).map((item, index) => {
+                const gameNum = index + 1
                 return (
-                  <div key={ index } styleName="cell">{ `Игра ${ index + 1 }` }</div>
+                  <Link key={ index } styleName="cell" to={ `/game/${ gameNum }` }>{ `Игра ${ gameNum }` }</Link>
                 )
               })
             }
@@ -136,11 +82,18 @@ export default class RatingTable extends React.Component {
         <div styleName="sidebar">
           <div ref="sidebar">
             {
-              data.firstGroup.map(this.renderSidebarRow)
-            }
-            <div styleName="hr"></div>
-            {
-              data.secondGroup.map(this.renderSidebarRow)
+              data.teams.map((team, index) => {
+                const styleName = cx('sidebarRow', {
+                  'nextGroupStarts': team.nextGroupStarts
+                })
+
+                return (
+                  <Link key={ index } styleName={ styleName } to={ `/team/${ team.name }` }>
+                    <div styleName="sidebarRowIndex">{ index + 1 }</div>
+                    { team.name }
+                  </Link>
+                )
+              })
             }
           </div>
         </div>
@@ -148,11 +101,46 @@ export default class RatingTable extends React.Component {
         <div ref="container" styleName="container">
           <div ref="content" styleName="content">
             {
-              data.firstGroup.map(this.renderContentRow)
-            }
-            <div styleName="hr"></div>
-            {
-              data.secondGroup.map(this.renderContentRow)
+              data.teams.map((team, index) => {
+                let rank
+
+                if (team.sumPoints > 1000) {
+                  rank = ''
+                } else if (team.sumPoints > 500) {
+                  rank = 'генералы'
+                } else if (team.sumPoints > 250) {
+                  rank = 'лейтенанты'
+                } else if (team.sumPoints > 100) {
+                  rank = 'сержанты'
+                } else {
+                  rank = ''
+                }
+
+                const styleName = cx('contentRow', {
+                  'nextGroupStarts': team.nextGroupStarts
+                })
+
+                return (
+                  <div key={ index } styleName={ styleName }>
+                    {
+                      team.games.map((value, index) => {
+                        if (value == '-') {
+                          value = ''
+                        }
+
+                        return (
+                          <div key={ index } styleName="cell">{ value }</div>
+                        )
+                      })
+                    }
+                    <div styleName="cell cellResult cellRank">{ rank }</div>
+                    <div styleName="cell cellResult cellRoundCnt">{ team.playedGamesCnt }</div>
+                    <div styleName="cell cellResult cellSumm">{ team.sumPoints }</div>
+                    <div styleName="cell cellResult cellAvg">{ team.avgPoints }</div>
+                    <div styleName="cell cellResult cellPercent">{ team.winPercent }</div>
+                  </div>
+                )
+              })
             }
           </div>
         </div>

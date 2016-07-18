@@ -6,4 +6,4 @@ modPath.addPath(path.resolve(__dirname, '../server'))
 modPath.addPath(path.resolve(__dirname, '../shared'))
 
 
-module.exports = require('./default')
+module.exports = require(`./${ process.env.NODE_ENV || 'development' }`)(require('./default'))

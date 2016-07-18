@@ -5,6 +5,8 @@ import routes from 'routes'
 
 import 'normalize.css/normalize.css'
 import 'assets/styl/index.styl'
+import 'assets/images/big_logo.png'
+import 'assets/images/icon.png'
 
 import Root from 'containers/Root'
 

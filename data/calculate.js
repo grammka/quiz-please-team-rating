@@ -8,11 +8,11 @@ var gamesCnt  = fullData.gamesCnt;
 
 // Slice team on [ playedGamesCnt > firstGroupGamesPlayedCnt ] and [ firstGroupGamesPlayedCnt < playedGamesCnt ]
 
-teams = teams.sort(function(a, b) {
+teams = teams.sort((a, b) => {
 	return b.playedGamesCnt - a.playedGamesCnt;
 });
 
-var firstGroup = teams.filter(function(team) {
+var firstGroup = teams.filter((team) => {
 	return team.playedGamesCnt >= firstGroupGamesPlayedCnt;
 });
 
@@ -21,17 +21,23 @@ var secondGroup = teams.slice(firstGroup.length);
 
 // Sort by winPercent
 
-firstGroup = firstGroup.sort(function(a, b) {
+firstGroup = firstGroup.sort((a, b) => {
 	return b.winPercent - a.winPercent;
 });
 
-secondGroup = secondGroup.sort(function(a, b) {
+secondGroup = secondGroup.sort((a, b) => {
   return b.winPercent - a.winPercent;
 });
 
+secondGroup[0].nextGroupStarts = true;
+
+teams = firstGroup.concat(secondGroup)
+
+var uniqueTeamNames = teams.map((item) => item.name);
+
 
 module.exports = {
-  gamesCnt: gamesCnt,
-  firstGroup: firstGroup,
-  secondGroup: secondGroup
+  gamesCnt,
+  teams,
+  teamNames: uniqueTeamNames
 };

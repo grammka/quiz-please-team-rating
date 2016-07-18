@@ -2,7 +2,7 @@ var fs            = require('fs');
 var path          = require('path');
 var calculation   = require('./calculate');
 
-var code = 'var data = ' + JSON.stringify(calculation);
+var code = 'var data = ' + JSON.stringify(calculation) + '\n\nmodule.exports = data;';
 
 
 fs.writeFile(path.resolve(__dirname, '../static/data.js'), code, function(err) {

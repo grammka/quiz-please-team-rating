@@ -80,8 +80,8 @@ $sidebar-width = 260px
   a
     color: #fff
 
-//body.not-mobile .faq:hover .hint
-//  display: block
+body.not-mobile .faq:hover .hint
+  display: block
 
 
 .sidebar
@@ -96,16 +96,19 @@ $sidebar-width = 260px
 .sidebarRow
   height: 30px
   line-height: 30px
+  display: block
   border-bottom: 1px solid #ddd
   padding: 0 15px 0 45px
   position: relative
   overflow: hidden
   white-space: nowrap
+  text-decoration: none
   text-overflow: ellipsis
   font-weight: bold
   font-size: 13px
+  &.nextGroupStarts
+    border-bottom-width 3px
 
-body.not-mobile .sidebarRow:hover,
 .sidebarRow.hovered
   background-color: #fff8d9
 
@@ -119,6 +122,7 @@ body.not-mobile .sidebarRow:hover,
   text-align: center
   font-weight: normal
   font-size: 11px
+  color #000
 
 
 
@@ -143,8 +147,9 @@ body.not-mobile .sidebarRow:hover,
   border-bottom: 1px solid #ddd
   white-space: nowrap
   display-inline-block()
+  &.nextGroupStarts
+    border-bottom-width 3px
 
-body.not-mobile .contentRow:hover,
 .contentRow.hovered
   background-color: #fff8d9
 
@@ -156,6 +161,7 @@ body.not-mobile .contentRow:hover,
   border-right: 1px solid #ddd
   text-align: center
   font-size: 13px
+  text-decoration: none
   display-inline-block()
 
 
