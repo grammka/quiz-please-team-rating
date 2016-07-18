@@ -7,7 +7,7 @@ import cx from 'classnames'
 import CSSModules from 'react-css-modules'
 import style from './style'
 
-import data from '../../../static/data'
+import data from 'data'
 
 
 @CSSModules(style, { allowMultiple: true })
@@ -47,19 +47,22 @@ export default class RatingTable extends React.Component {
 
         <div styleName="header">
           <div ref="header" styleName="headerContent">
-            {
-              Array.apply(null, { length: data.gamesCnt }).map(Number.call, Number).map((item, index) => {
-                const gameNum = index + 1
-                return (
-                  <Link key={ index } styleName="cell" to={ `/game/${ gameNum }` }>{ `Игра ${ gameNum }` }</Link>
-                )
-              })
-            }
             <div styleName="cell cellResult cellRank">Ранг</div>,
             <div styleName="cell cellResult cellRoundCnt">Кол. игр</div>,
             <div styleName="cell cellResult cellSumm">Сумма</div>,
             <div styleName="cell cellResult cellAvg">Среднее</div>,
             <div styleName="cell cellResult cellPercent">%</div>
+            {
+              Array.apply(null, { length: data.gamesCnt }).map(Number.call, Number).map((item, index) => {
+                const gameNum = data.gamesCnt - index
+                return (
+                  <div key={ index } styleName="cell">{ `Игра ${ gameNum }` }</div>
+                )
+                return (
+                  <Link key={ index } styleName="cell" to={ `/game/${ gameNum }` }>{ `Игра ${ gameNum }` }</Link>
+                )
+              })
+            }
           </div>
         </div>
 
@@ -122,8 +125,13 @@ export default class RatingTable extends React.Component {
 
                 return (
                   <div key={ index } styleName={ styleName }>
+                    <div styleName="cell cellResult cellRank">{ rank }</div>
+                    <div styleName="cell cellResult cellRoundCnt">{ team.playedGamesCnt }</div>
+                    <div styleName="cell cellResult cellSumm">{ team.sumPoints }</div>
+                    <div styleName="cell cellResult cellAvg">{ team.avgPoints }</div>
+                    <div styleName="cell cellResult cellPercent">{ team.winPercent }</div>
                     {
-                      team.games.map((value, index) => {
+                      team.games.reverse().map((value, index) => {
                         if (value == '-') {
                           value = ''
                         }
@@ -133,11 +141,6 @@ export default class RatingTable extends React.Component {
                         )
                       })
                     }
-                    <div styleName="cell cellResult cellRank">{ rank }</div>
-                    <div styleName="cell cellResult cellRoundCnt">{ team.playedGamesCnt }</div>
-                    <div styleName="cell cellResult cellSumm">{ team.sumPoints }</div>
-                    <div styleName="cell cellResult cellAvg">{ team.avgPoints }</div>
-                    <div styleName="cell cellResult cellPercent">{ team.winPercent }</div>
                   </div>
                 )
               })

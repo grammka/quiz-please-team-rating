@@ -25,7 +25,11 @@ $sidebar-width = 260px
 
 .headerContent
   white-space: nowrap
+  font-weight: 600
   font-size: 0
+  .cell
+    border-bottom 0
+    font-size: 12px
 
 
 
@@ -41,6 +45,7 @@ $sidebar-width = 260px
   position: fixed
   z-index: 40
   text-align: center
+  font-weight: 600
   font-size: 13px
 
 .faq
@@ -80,7 +85,7 @@ $sidebar-width = 260px
   a
     color: #fff
 
-body.not-mobile .faq:hover .hint
+:global(.not-mobile) .faq:hover .hint
   display: block
 
 
@@ -144,11 +149,8 @@ body.not-mobile .faq:hover .hint
 
 .contentRow
   height: 30px
-  border-bottom: 1px solid #ddd
   white-space: nowrap
   display-inline-block()
-  &.nextGroupStarts
-    border-bottom-width 3px
 
 .contentRow.hovered
   background-color: #fff8d9
@@ -159,19 +161,22 @@ body.not-mobile .faq:hover .hint
   height: 30px
   line-height: 30px
   border-right: 1px solid #ddd
+  border-bottom: 1px solid #ddd
   text-align: center
   font-size: 13px
   text-decoration: none
   display-inline-block()
+  .nextGroupStarts &
+    border-bottom-width 3px
 
 
 .cellResult
+  background-color: #fffbf7
   min-width: 0
 
 
 .cellRank
   width: 100px
-  border-left: 2px solid #ddd
 
 .cellRoundCnt
   width: 70px
@@ -184,3 +189,4 @@ body.not-mobile .faq:hover .hint
 
 .cellPercent
   width: 55px
+  border-right: 2px solid #ddd

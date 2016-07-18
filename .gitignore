@@ -5,4 +5,4 @@
 node_modules
 
 build
-static/data.js
+shared/data.js

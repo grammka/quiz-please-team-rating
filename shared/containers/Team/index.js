@@ -3,7 +3,8 @@ import TeamsList from 'components/TeamsList'
 import LineChart from 'chart'
 import CSSModules from 'react-css-modules'
 import style from './style'
-import data from '../../../static/data'
+
+import data from 'data'
 
 
 let teamData

@@ -4,7 +4,7 @@ import isMobile from 'isMobile'
 
 export default class Root extends React.Component {
   componentDidMount() {
-    if (isMobile) {
+    if (!isMobile) {
       document.body.className = 'not-mobile'
     }
   }
