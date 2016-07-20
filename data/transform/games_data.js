@@ -41,7 +41,7 @@ function transform(file, gameNum) {
     var rounds            = [];
 
     if (teamTotalPoints) {
-      teamTotalPoints = Number(teamTotalPoints.replace(',', '.'));
+      teamTotalPoints = Number(String(teamTotalPoints).replace(',', '.'));
     }
 
     if (roundsExist) {

@@ -28,7 +28,7 @@ $sidebar-width = 260px
   font-weight: 600
   font-size: 0
   .cell
-    border-bottom 0
+    border-top 0
     font-size: 12px
 
 
@@ -102,7 +102,7 @@ $sidebar-width = 260px
   height: 30px
   line-height: 30px
   display: block
-  border-bottom: 1px solid #ddd
+  border-top: 1px solid #ddd
   padding: 0 15px 0 45px
   position: relative
   overflow: hidden
@@ -111,8 +111,10 @@ $sidebar-width = 260px
   text-overflow: ellipsis
   font-weight: bold
   font-size: 13px
+  &:first-child
+    border-top: 0
   &.nextGroupStarts
-    border-bottom-width 3px
+    border-top-width 3px
 
 .sidebarRow.hovered
   background-color: #fff8d9
@@ -151,6 +153,9 @@ $sidebar-width = 260px
   height: 30px
   white-space: nowrap
   display-inline-block()
+  &:first-child
+    .cell
+      border-top: 0
 
 .contentRow.hovered
   background-color: #fff8d9
@@ -161,13 +166,13 @@ $sidebar-width = 260px
   height: 30px
   line-height: 30px
   border-right: 1px solid #ddd
-  border-bottom: 1px solid #ddd
+  border-top: 1px solid #ddd
   text-align: center
   font-size: 13px
   text-decoration: none
   display-inline-block()
   .nextGroupStarts &
-    border-bottom-width 3px
+    border-top-width 3px
 
 
 .cellResult
