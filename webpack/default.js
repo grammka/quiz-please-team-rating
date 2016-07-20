@@ -85,15 +85,31 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(paths.base, 'client/assets/index.html'),
-      inject: 'body',
-      filename: 'index.html'
+      title: 'Quiz, please, rate this!',
+      template: `!!handlebars!${ path.join(paths.base, 'client/assets/index.html') }`,
+      filename: 'index.html',
+      hash: false,
+      cache: true,
+      inject: 'body'
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin(globals)
   ],
+
+  htmlWebpackPlugin: {
+    files: {
+      bigLogo: 'assets/images/big_logo.png',
+      icon: 'assets/images/icon.png',
+      chunks: {
+        app: {
+          entry: paths.client,
+          logo: ['assets/images/icon.png']
+        }
+      }
+    }
+  },
 
   stylus: {
     use: [
